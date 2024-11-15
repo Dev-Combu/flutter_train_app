@@ -9,5 +9,4 @@ class SeatPage extends StatelessWidget{
         ),
     );
   }
-
 }

@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/train_Station_List_Page.dart';
 
-class HomePage extends StatelessWidget{
+class HomePage extends StatefulWidget{  
+  @override
+  State<StatefulWidget> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>{
+
+  String? start = '';
+  String? last = '';
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +24,7 @@ class HomePage extends StatelessWidget{
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  station("서울", "부산"),
+                  station("$start", "$last"),
                   SizedBox(height: 20),
                   Seat_Choice(),
                 ],
@@ -34,13 +43,13 @@ class HomePage extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              label("시작", start),
+              label("출발역", start),
               Container(
                 width: 2,
                 height: 50,
                 color: Colors.grey[400],
               ),
-              label("도착", last)
+              label("도착역", last)
             ])
           ],
         ),
@@ -48,20 +57,30 @@ class HomePage extends StatelessWidget{
     );
   }
 
-  Column label(String label, String station) {
-    return Column(
-      children: [
-        Text('$label',
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            )),
-        Text(
-          '$station',
-          style: TextStyle(fontSize: 40),
-        ),
-      ],
+  GestureDetector label(String label, String? station) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => StationListPage('$label'),
+          ),
+        );
+      },
+      child: Column(
+        children: [
+          Text('$label',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              )),
+          Text(
+            station = station == '' ? '선택' : '$station',
+            style: TextStyle(fontSize: 40),
+          ),
+        ],
+      ),
     );
   }
 }
