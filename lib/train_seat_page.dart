@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class trainStatinListpage extends StatelessWidget{
+class SeatPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('출발역'),
+        title: Text('좌석 선택'),
         ),
     );
   }
