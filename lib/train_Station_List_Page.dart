@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/hompage.dart';
 
-class StationListPage extends StatelessWidget{
+class StationListPage extends StatefulWidget{
 
-  StationListPage(this.end);
+  StationListPage(this.end, this.station);
 
   String? end;
+  String? station;
 
+  @override
+  State<StationListPage> createState() => _StationListPageState();
+}
+
+class _StationListPageState extends State<StationListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$end')
+        title: Text('${widget.end}')
       ),
       body:ListView(
         // "수서","동탄","평택지제","천안아산","오송","대전","김천구미","동대구","경주","울산","부산"
@@ -32,8 +39,12 @@ class StationListPage extends StatelessWidget{
     );
   }
 
-  Container stationName(String name){
-    return Container(
+  GestureDetector stationName(String name){
+    return GestureDetector(
+       onTap: () {
+        Navigator.pop(context, name);
+      },
+      child: Container(
       height: 50,
       alignment: Alignment.centerLeft,
       child: Padding(
@@ -46,6 +57,6 @@ class StationListPage extends StatelessWidget{
             ),
       ),
     decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color:Colors.grey[300]!),)));
-  } 
+        border: Border(bottom: BorderSide(color:Colors.grey[300]!),))));
+  }
 }

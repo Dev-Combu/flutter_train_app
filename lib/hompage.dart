@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage>{
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  station("$start", "$last"),
+                  station(start ?? '', last ?? ''),
                   SizedBox(height: 20),
                   Seat_Choice(),
                 ],
@@ -43,13 +43,13 @@ class _HomePageState extends State<HomePage>{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              label("출발역", start),
+              label("출발역", start, true),
               Container(
                 width: 2,
                 height: 50,
                 color: Colors.grey[400],
               ),
-              label("도착역", last)
+              label("도착역", last, false)
             ])
           ],
         ),
@@ -57,15 +57,24 @@ class _HomePageState extends State<HomePage>{
     );
   }
 
-  GestureDetector label(String label, String? station) {
+  GestureDetector label(String label, String? station, bool isStart) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        String? selectedStation = await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => StationListPage('$label'),
+            builder: (context) => StationListPage(label, station),
           ),
         );
+        if (selectedStation != null) {
+          setState(() {
+            if (isStart) {
+              start = selectedStation; // 출발역 업데이트
+            } else {
+              last = selectedStation; // 도착역 업데이트
+            }
+          });
+        }
       },
       child: Column(
         children: [
