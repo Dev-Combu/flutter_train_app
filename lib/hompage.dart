@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/train_Station_List_Page.dart';
+import 'package:flutter_train_app/train_seat_page.dart';
 
 class HomePage extends StatefulWidget{  
   @override
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage>{
                 children: [
                   station(start ?? '', last ?? ''),
                   SizedBox(height: 20),
-                  Seat_Choice(),
+                  SeatChoice(),
                 ],
               )),
         ));
@@ -43,13 +44,17 @@ class _HomePageState extends State<HomePage>{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              label("출발역", start, true),
+              Expanded(
+                child: label("출발역", start, true),
+              ),
               Container(
                 width: 2,
                 height: 50,
                 color: Colors.grey[400],
               ),
-              label("도착역", last, false)
+              Expanded(
+                child: label("도착역", last, false),
+              ),
             ])
           ],
         ),
@@ -92,19 +97,23 @@ class _HomePageState extends State<HomePage>{
       ),
     );
   }
-}
 
-class Seat_Choice extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  Widget SeatChoice() {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SeatPage(start, last),
+          ),
+        );
+      },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.purple,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12))),
+                borderRadius: BorderRadius.circular(20))),
         child: Text(
           "좌석 선택",
           style: TextStyle(
