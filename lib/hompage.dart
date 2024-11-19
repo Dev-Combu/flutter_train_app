@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/train_Station_List_Page.dart';
 import 'package:flutter_train_app/train_seat_page.dart';
@@ -103,13 +104,31 @@ class _HomePageState extends State<HomePage>{
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SeatPage(start, last),
-          ),
-        );
-      },
+          start == '' || last == ''
+              ? showCupertinoDialog(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Text('경고!'),
+                      content: Text('역을 선택하십시오'),
+                      actions: [
+                        CupertinoDialogAction(
+                            isDefaultAction: false,
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('확인'))
+                      ],
+                    );
+                  })
+              : 
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SeatPage(start, last),
+                  ),
+                );
+        },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.purple,
             shape: RoundedRectangleBorder(
