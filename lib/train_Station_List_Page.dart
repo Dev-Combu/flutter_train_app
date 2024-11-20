@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_app/hompage.dart';
 
 class StationListPage extends StatefulWidget{
 
@@ -39,6 +38,7 @@ class _StationListPageState extends State<StationListPage> {
     );
   }
 
+ // 역 리스트를 구성하는 위젯(선택시 메인화면으로 이동하면서 역 정보 전달)
   GestureDetector stationName(String name){
     return GestureDetector(
        onTap: () {

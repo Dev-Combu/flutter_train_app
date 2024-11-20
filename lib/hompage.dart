@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage>{
         ));
   }
 
+  // 하얀 박스를 구성하는 위젯
   Widget station(String start, String last) {
     return SizedBox(
       child: Container(
@@ -63,6 +64,7 @@ class _HomePageState extends State<HomePage>{
     );
   }
 
+  // 하얀 박스 안에 역을 보여주는 위젯
   GestureDetector label(String label, String? station, bool isStart) {
     return GestureDetector(
       onTap: () async {
@@ -99,6 +101,7 @@ class _HomePageState extends State<HomePage>{
     );
   }
 
+  // 좌석 선택 화면으로 이동하는 버튼
   Widget SeatChoice() {
     return SizedBox(
       width: double.infinity,

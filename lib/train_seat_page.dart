@@ -100,6 +100,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  //홈 화면에서 출발역과 도착역 정보를 넘겨받아서 보여주는 위젯
   Row StartToLast() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -129,6 +130,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  // 예약 버튼의 기능을 정의한 위젯
   Widget BookButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
@@ -192,6 +194,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  //좌석의 상태가 어떤것인지를 나타내주는 메뉴의 상자를 정의한 위젯
   Widget label(String text, Color color) {
     return Padding(
       padding: const EdgeInsets.all(20),
@@ -212,6 +215,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  // 좌석을 한 행을 정의한 위젯
   Widget row(int rowNum) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -237,6 +241,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
+  //좌석의 상태를 표현하는 위젯
   Widget seat(int rowNum, int colNum) {
     return Expanded(
         child: Padding(
@@ -258,7 +263,4 @@ class _SeatPageState extends State<SeatPage> {
       ),
     ));
   }
-
-
-
 }
