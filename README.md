@@ -1,16 +1,32 @@
 # flutter_train_app
 
-A new Flutter project.
+출발하는 역과 도착하는 역을 선택하고 좌석을 선택해서 예약을 하는 앱
 
-## Getting Started
+개발 환경(OS, IDE, 언어): MacBook, VSCode, flutter
 
-This project is a starting point for a Flutter application.
+## 목차
 
-A few resources to get you started if this is your first Flutter project:
+- [특징](#특징)
+- [보안할 점](#보안할-점)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 특징
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 화면 전환
+화면을 총 3개로 구성하여 필요에 따라서 화면을 전환하도록 구성하였다.
+  1. main화면
+  2. 역 리스트 화면
+  3. 좌석 선택 화면
+메인 화면에서 역을 선택하기 위해서 역 리스트 화면으로 전환하고 선택하면 다시 메인온다.
+출발역과 도착역을 선택하면 좌석 선택화면으로 넘어가서 좌석을 선택하고 예약 버튼을 누르면 메인화면으로 돌아간다.
+
+- 화면 전환시 정보 전달
+1. 메인화면에서 역을 선택할때 출발역인지 도착역인지에 대한 정보를 넘겨서 리스트 화면에 보여준다.
+2. 역 리스트에서 선택한 역이름을 메인 화면에 출발, 도착 정확한 위치에 넘어가도록 했다.
+3. 메인화면에 넘어온 출발역, 도착역 정보를 좌석 선택화면에도 보여지도록 했다.
+
+- stateful and stateless
+역 정보를 넘겼을 때 정보가 변경되면 화면에 바로 보여지도록 stateful위젯을 사용했다.
+
+- 예외처리
+  1. 출발역, 도착역을 모두 선택하지 않으면 좌석을 선택하는 화면을 넘어가지 않고, 역을 선택하라는 경고 문구가 띄게했다.
+  2. 좌석 선택하는 화면에서 좌석을 선택하지 않으면 예약 버튼이 작동하지 않도록 설정했다.
