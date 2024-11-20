@@ -136,11 +136,12 @@ class _SeatPageState extends State<SeatPage> {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
+              if(selectedRow == null && selectedCol == null){}
+              else{
               showCupertinoDialog(
                   context: context,
                   builder: (context) {
                     String? col;
-
                     switch (selectedCol) {
                       case 1:
                       col = "A";
@@ -151,7 +152,6 @@ class _SeatPageState extends State<SeatPage> {
                       case 4:
                       col = "D";
                     }
-
                     return CupertinoAlertDialog(
                         title: Text('예매 하시겠습니까?'),
                         content: Text(
@@ -161,20 +161,20 @@ class _SeatPageState extends State<SeatPage> {
                         ),
                         actions: [
                           CupertinoDialogAction(
-                            isDefaultAction: false,
+                            isDestructiveAction: true,
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
                             child: Text('취소'),
                           ),
                           CupertinoDialogAction(
-                              isDestructiveAction: false,
+                              isDefaultAction: true,
                               onPressed: () {
                                 Navigator.popUntil(context, (route) => route.isFirst);
                               },
                               child: Text('확인')),
                         ]);
-                  });
+                  });};
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.purple,
